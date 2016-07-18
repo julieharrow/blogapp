@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  # create runs "New" and "Save" when called
   def create
     @comment = Comment.create(comment_params)
     respond_to do |format|
