@@ -29,7 +29,7 @@
   </div>
   <% @blog_post.comments.each do |comment|%>
     <div class="panel-body">
-      <p> <strong><%= comment.author %></strong> said: </p>
+      <p class="timestamp"><%= comment.updated_at.strftime('%x')%> at <%= comment.updated_at.strftime('%r')%>   <strong><%= comment.author %></strong> said: </p>
       <p> <%= comment.comment_entry %>
       <%= link_to "Edit", edit_blog_post_comment_path(@blog_post, comment), class:"btn btn-default" %>
       <%= link_to 'Delete', [comment.blog_post, comment], method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default" %>

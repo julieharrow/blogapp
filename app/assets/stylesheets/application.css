@@ -17,3 +17,18 @@
  .cant-see-me {
    display:none;
  }
+
+
+body {
+  background-color:SteelBlue;
+}
+
+.container {
+  margin-top:20px;
+  background-color:WhiteSmoke;
+}
+
+.timestamp {
+  font-size:11px;
+  font-style:italic;
+}
