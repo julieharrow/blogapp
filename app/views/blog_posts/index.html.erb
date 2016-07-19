@@ -8,7 +8,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3><%= link_to blog_post.title, blog_post %></h3>
-          <h5>by <%= blog_post.author %></h5>
+          <h5>by <%= blog_post.user.email %></h5>
           <p class="timestamp"><%= blog_post.updated_at.strftime('%x')%> at <%= blog_post.updated_at.strftime('%r')%></p>
         </div>
         <div class="panel-body">
