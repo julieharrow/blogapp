@@ -41,6 +41,12 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
+  <div class="field form-group">
+    <%= image_tag :avatar %>
+    <%= f.label "Edit the photo for your profile:" %><br>
+    <%= f.file_field :avatar %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

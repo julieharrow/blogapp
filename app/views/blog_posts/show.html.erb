@@ -2,15 +2,17 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <%= @blog_post.title %>
+    <div class= "pull-right"><%= image_tag @blog_post.user.avatar.url(:thumb) %></div>
+    <h1><%= @blog_post.title %></h1>
+    <h5>by <%= @blog_post.user.username %></h5>
+    <p class="timestamp"><%= @blog_post.updated_at.strftime('%x')%> at <%= @blog_post.updated_at.strftime('%r')%></p>
   </div>
-  <div class="panel-body">
-    <p> <%= @blog_post.user.email %> </p>
-    <p> <%= @blog_post.blog_entry %> </p>
+  <div class="panel-body handwriting">
+    <%= @blog_post.blog_entry%>
   </div>
   <div class="panel-footer">
     <%= link_to 'Edit', edit_blog_post_path(@blog_post),class:"btn btn-warning" %>
-    <%= link_to 'Destroy', method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+    <%= link_to 'Delete', method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %>
   </div>
 </div>
 
@@ -29,8 +31,9 @@
   </div>
   <% @blog_post.comments.each do |comment|%>
     <div class="panel-body">
-      <p class="timestamp"><%= comment.updated_at.strftime('%x')%> at <%= comment.updated_at.strftime('%r')%>   <strong><%= comment.user.email %></strong> said: </p>
-      <p> <%= comment.comment_entry %>
+      <div class= "pull-right"><%= image_tag comment.user.avatar.url(:thumb) %></div>
+      <div class="timestamp">On <%= comment.updated_at.strftime('%x')%> at <%= comment.updated_at.strftime('%r')%> <%= comment.user.username %> said: </div>
+      <div> <%= comment.comment_entry %> </div>
       <%= link_to "Edit", edit_blog_post_comment_path(@blog_post, comment), class:"btn btn-default" %>
       <%= link_to 'Delete', [comment.blog_post, comment], method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default" %>
     </div>

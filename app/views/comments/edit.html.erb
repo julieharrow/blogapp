@@ -15,10 +15,6 @@
     <%= f.label :comment_entry, class:"sr-only" %><br>
     <%= f.text_area :comment_entry, class: "form-control", placeholder: "Comment", rows: 5 %>
   </div>
-  <div class="form-group">
-    <%= f.label :author, class:"sr-only" %><br>
-    <%= f.text_field :author, class: "form-control", placeholder: "author" %>
-  </div>
   <div class="field cant-see-me">
     <%= f.number_field :blog_post_id, value: @blog_post.id %>
   </div>

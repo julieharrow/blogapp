@@ -14,21 +14,30 @@
  *= require_self
  */
 
+ body {
+   font-family: 'Pavanam', sans-serif;
+   background-color:#ff3300;
+ }
+
  .cant-see-me {
    display:none;
  }
 
+ .container {
+   margin-top:20px;
+   background-color:WhiteSmoke;
+ }
 
-body {
-  background-color:SteelBlue;
+#rubyRed {
+  color:#ff3300;
 }
 
-.container {
-  margin-top:20px;
-  background-color:WhiteSmoke;
+.handwriting {
+  font-family: 'Lato', sans-serif;
+
 }
 
 .timestamp {
-  font-size:11px;
+  font-size:12px;
   font-style:italic;
 }
