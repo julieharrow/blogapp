@@ -1,22 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<div class="panel panel-primary">
+<div class="panel panel-default">
   <div class="panel-heading">
     <div class= "pull-right"><%= image_tag @blog_post.user.avatar.url(:thumb) %></div>
     <h1><%= @blog_post.title %></h1>
-    <h5>by <%= @blog_post.user.username %></h5>
+    <h5>by <%= link_to @blog_post.user.username, user_posts_path(id: @blog_post.user.id) %></h5>
     <p class="timestamp"><%= @blog_post.updated_at.strftime('%x')%> at <%= @blog_post.updated_at.strftime('%r')%></p>
   </div>
   <div class="panel-body handwriting">
     <%= @blog_post.blog_entry%>
   </div>
-  <div class="panel-footer">
-    <%= link_to 'Edit', edit_blog_post_path(@blog_post),class:"btn btn-warning" %>
-    <%= link_to 'Delete', method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+  <% if current_user.id == @blog_post.user.id %>
+    <div class="panel-footer">
+      <%= link_to 'Edit', edit_blog_post_path(@blog_post),class:"btn btn-warning" %>
+      <%= link_to 'Delete', blog_post_path, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+  <% end %>
   </div>
 </div>
 
-<div class="panel panel-success">
+
+<div class="panel panel-primary">
   <div class="panel-heading">
     Write a comment
   </div>
@@ -32,13 +35,12 @@
   <% @blog_post.comments.each do |comment|%>
     <div class="panel-body">
       <div class= "pull-right"><%= image_tag comment.user.avatar.url(:thumb) %></div>
-      <div class="timestamp">On <%= comment.updated_at.strftime('%x')%> at <%= comment.updated_at.strftime('%r')%> <%= comment.user.username %> said: </div>
-      <div> <%= comment.comment_entry %> </div>
-      <%= link_to "Edit", edit_blog_post_comment_path(@blog_post, comment), class:"btn btn-default" %>
-      <%= link_to 'Delete', [comment.blog_post, comment], method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-default" %>
+      <div class="timestamp">On <%= comment.updated_at.strftime('%x')%> at <%= comment.updated_at.strftime('%r')%> <%= link_to comment.user.username, user_posts_path(id: comment.user.id)%> said: </div>
+      <p> <%= comment.comment_entry %> </p>
+      <% if current_user.id == comment.user.id %>
+        <%= link_to "Edit", edit_blog_post_comment_path(@blog_post, comment), class:"btn btn-warning" %>
+        <%= link_to 'Delete', [comment.blog_post, comment], method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+      <% end %>
     </div>
   <% end %>
 </div>
-
-
-<%= link_to 'Back', blog_posts_path %>

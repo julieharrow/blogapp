@@ -1,0 +1,21 @@
+<% @user.blog_posts.each do |blog_post| %>
+  <div class="col-md-12">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <div class= "pull-right"><%= image_tag blog_post.user.avatar.url(:thumb) %></div>
+        <h3><%= link_to blog_post.title, blog_post %></h3>
+        <h5>by <%= blog_post.user.username %></h5>
+        <div class="timestamp"><%= blog_post.updated_at.strftime('%x')%> at <%= blog_post.updated_at.strftime('%r')%></div>
+      </div>
+
+      <div class="panel-body handwriting">
+        <%= truncate(blog_post.blog_entry, length:300, seperator:' ') %>
+        <%= link_to "Read More",blog_post %>
+      </div>
+      <div class="panel-footer">
+        <%= link_to 'Edit', edit_blog_post_path(blog_post), class: "btn btn-warning" %>
+        <%= link_to 'Delete', blog_post, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+  <% end %>

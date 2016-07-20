@@ -16,7 +16,8 @@
 
  body {
    font-family: 'Pavanam', sans-serif;
-   background-color:#ff3300;
+   color:#031927
+   background-color:#508AA8;
  }
 
  .cant-see-me {
@@ -25,16 +26,15 @@
 
  .container {
    margin-top:20px;
-   background-color:WhiteSmoke;
+   background-color:#C8E0F4;
  }
 
-#rubyRed {
-  color:#ff3300;
+.rubyRed {
+  color:#BA1200;
 }
 
 .handwriting {
   font-family: 'Lato', sans-serif;
-
 }
 
 .timestamp {

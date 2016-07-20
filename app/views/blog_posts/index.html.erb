@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 
-<h1>Playing Nice with <span id="rubyRed">Ruby</span></h1>
+<h1>Playing Nice with <span class="rubyRed">Ruby</span></h1>
 <div class="row">
   <% @blog_posts.each do |blog_post| %>
     <div class="col-md-6">
@@ -9,7 +9,7 @@
         <div class="panel-heading">
           <div class= "pull-right"><%= image_tag blog_post.user.avatar.url(:thumb) %></div>
           <h3><%= link_to blog_post.title, blog_post %></h3>
-          <h5>by <%= blog_post.user.username %></h5>
+          <h5>by <%= link_to blog_post.user.username, user_posts_path(id: blog_post.user.id)%></h5>
           <div class="timestamp"><%= blog_post.updated_at.strftime('%x')%> at <%= blog_post.updated_at.strftime('%r')%></div>
         </div>
 
@@ -18,10 +18,12 @@
           <%= link_to "Read More",blog_post %>
         </div>
 
-        <div class="panel-footer">
-          <%= link_to 'Edit', edit_blog_post_path(blog_post), class: "btn btn-warning" %>
-          <%= link_to 'Delete', blog_post, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger"  %>
-        </div>
+        <% if current_user.id == blog_post.user.id %>
+          <div class="panel-footer">
+            <%= link_to 'Edit', edit_blog_post_path(blog_post), class: "btn btn-warning" %>
+            <%= link_to 'Delete', blog_post, method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger"  %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
